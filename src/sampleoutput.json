@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
-import Newsitem from './Newsitem'
-
-export default class News extends Component {
-  articles = [
+{
+  "status": "ok",
+  "totalResults": 2,
+  "articles": [
     {
       "source": { "id": "espn-cric-info", "name": "ESPN Cric Info" },
       "author": null,
@@ -24,41 +23,4 @@ export default class News extends Component {
       "content": "Last week, we at ESPNcricinfo did something we have been thinking of doing for eight years now: pretend-live ball-by-ball commentary for a classic cricket match. We knew the result, yes, but we tried… [+6823 chars]"
     }
   ]
-  constructor(){
-    super();
-    console.log("hellow i am ma constructor from news component")
-    this.state ={
-      articles: this.articles,
-      loading: false
-
-    }
-  }
-
-async componentDidMount(){
-  
-  let url ="https://newsapi.org/v2/top-headlines?country=in&apiKey=59fe9e26704b41f38a5e69c71755675f";
-  let data = await fetch(url);
-  let parsedData = await data.json()
-  console.log(parsedData);
-  this.setState({articles: parsedData.articles})
-}
-
-  render() {
-    return (
-      <div className='container my-3'>
-        <h1>daily-news top headlines</h1>
-        <div className="row">
-          {this.articles.map((element)=>{
-            return <div className="col-md-4" key={element.url}>
-            <Newsitem title={element.title} description={element.description.slice(0,88)} imageurl={element.urlToImage} newsUrl={element.url}/>
-            </div>
-            
-          })}
-          
-          
-       
-        </div>
-      </div>
-    )
-  }
 }
